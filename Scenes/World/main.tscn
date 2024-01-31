@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://c53hqbfrqyjv0"]
+
+[ext_resource type="PackedScene" uid="uid://bqq05jbb4l0xg" path="res://Scenes/Items/Wall.tscn" id="2_5nwwo"]
+[ext_resource type="Script" path="res://Scenes/World/Walls.gd" id="2_xca4u"]
+[ext_resource type="PackedScene" uid="uid://tou4ewri3xa3" path="res://Scenes/World/UI_layer.tscn" id="6_e8r6c"]
+[ext_resource type="PackedScene" uid="uid://br4tea6it2nhs" path="res://Scenes/Items/HeroSpawner.tscn" id="7_j8ft8"]
+[ext_resource type="PackedScene" uid="uid://bct8es2rk0f4e" path="res://Scenes/Characters/HeroesParty.tscn" id="8_4k0sg"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Walls" type="Node" parent="."]
+script = ExtResource("2_xca4u")
+
+[node name="BottomWall" parent="Walls" groups=["Walls"] instance=ExtResource("2_5nwwo")]
+position = Vector2(0, 480)
+scale = Vector2(23, 1)
+
+[node name="TopWall" parent="Walls" groups=["Walls"] instance=ExtResource("2_5nwwo")]
+position = Vector2(0, -480)
+scale = Vector2(23, 1)
+
+[node name="LeftWall" parent="Walls" groups=["Walls"] instance=ExtResource("2_5nwwo")]
+position = Vector2(-352, 0)
+scale = Vector2(1, 31)
+
+[node name="RightWall" parent="Walls" groups=["Walls"] instance=ExtResource("2_5nwwo")]
+position = Vector2(352, 0)
+scale = Vector2(1, 31)
+
+[node name="UILayer" parent="." instance=ExtResource("6_e8r6c")]
+
+[node name="HeroSpawner" parent="." node_paths=PackedStringArray("walls", "heroes_party") groups=["Hero_spawner"] instance=ExtResource("7_j8ft8")]
+walls = NodePath("../Walls")
+heroes_party = NodePath("../HeroesParty")
+
+[node name="HeroesParty" parent="." node_paths=PackedStringArray("walls") instance=ExtResource("8_4k0sg")]
+walls = NodePath("../Walls")

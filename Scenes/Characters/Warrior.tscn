@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cds2wofpts0ud"]
+
+[ext_resource type="PackedScene" uid="uid://2krxbcxjov7r" path="res://Scenes/Characters/Hero.tscn" id="1_56yer"]
+[ext_resource type="Script" path="res://Scenes/Characters/Warrior.gd" id="2_v4kte"]
+
+[node name="Hero" instance=ExtResource("1_56yer")]
+script = ExtResource("2_v4kte")

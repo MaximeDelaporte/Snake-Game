@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1eribhrwambx"]
+
+[ext_resource type="Script" path="res://Scenes/Items/FoodSpawner.gd" id="1_xnloi"]
+
+[node name="FoodSpawner" type="Node2D" groups=["Food_spawner"]]
+script = ExtResource("1_xnloi")

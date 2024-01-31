@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bct8es2rk0f4e"]
+
+[ext_resource type="Script" path="res://Scenes/Characters/HeroesParty.gd" id="1_is04r"]
+
+[node name="HeroesParty" type="Node2D"]
+script = ExtResource("1_is04r")
+
+[node name="Heroes" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://jfbw5onsqw14"]
+
+[ext_resource type="PackedScene" uid="uid://2krxbcxjov7r" path="res://Scenes/Characters/Hero.tscn" id="1_tufag"]
+[ext_resource type="Script" path="res://Scenes/Characters/Spearman.gd" id="2_fr08y"]
+
+[node name="Hero" instance=ExtResource("1_tufag")]
+script = ExtResource("2_fr08y")
