@@ -3,6 +3,7 @@ class_name HeroSpawner
 extends Node2D
 
 @export var walls : Walls
+@export var traps : Traps
 @export var heroes_party : HeroesParty
 var warrior_scene = preload("res://Scenes/Characters/Warrior.tscn")
 var archer_scene = preload("res://Scenes/Characters/Archer.tscn")
@@ -39,16 +40,18 @@ func spawn_hero():
 	else : 
 		return null
 	add_child(hero)
-
-	#food = food_scene.instantiate()
-	var x_pos = round(randi_range(walls.top_left_corner.x + BODY_SEGMENT_SIZE, walls.bottom_right_corner.x - BODY_SEGMENT_SIZE)/ BODY_SEGMENT_SIZE) * BODY_SEGMENT_SIZE
-	var y_pos = round(randi_range(walls.top_left_corner.y+ BODY_SEGMENT_SIZE, walls.bottom_right_corner.y - BODY_SEGMENT_SIZE)/ BODY_SEGMENT_SIZE) * BODY_SEGMENT_SIZE
-	# add_child(food)
-	var hero_position = Vector2(x_pos, y_pos)
+	var hero_position = generate_position()
+	while traps.is_on_trap_position(hero_position):
+		hero_position = generate_position()
 	hero.position = hero_position
+
 func destroy_hero():
 	if (hero != null) :
 		hero.queue_free()
 		await get_tree().create_timer(10.0).timeout
 		spawn_hero()
-
+func generate_position():
+	var x_pos = round(randi_range(walls.top_left_corner.x + BODY_SEGMENT_SIZE, walls.bottom_right_corner.x - BODY_SEGMENT_SIZE)/ BODY_SEGMENT_SIZE) * BODY_SEGMENT_SIZE
+	var y_pos = round(randi_range(walls.top_left_corner.y+ BODY_SEGMENT_SIZE, walls.bottom_right_corner.y - BODY_SEGMENT_SIZE)/ BODY_SEGMENT_SIZE) * BODY_SEGMENT_SIZE
+	# add_child(food)
+	return Vector2(x_pos, y_pos)

@@ -7,6 +7,7 @@ const HERO_SPRITE_SIZE = 32
 signal on_point_scored(points: int)
 signal on_game_over
 var this_script = get_script()
+var trap = preload("res://Scenes/Characters/Trap.tscn")
 var warrior_scene = preload("res://Scenes/Characters/Warrior.tscn")
 var archer_scene = preload("res://Scenes/Characters/Archer.tscn")
 var spearman_scene = preload("res://Scenes/Characters/Spearman.tscn")
@@ -19,10 +20,14 @@ enum CollisionDirection {
 }
 @onready var heroes: Node = $Heroes
 @onready var timer:Timer = $Timer
+@onready var invulnerability_timer:Timer = $Invulnerability
+@onready var is_invulnerable = false
 
 @export var walls: Walls
+@export var traps: Traps
 
 var walls_dict
+var traps_dict
 var move_direction = Vector2.ZERO
 
 var heroes_spawner
@@ -35,9 +40,9 @@ func _ready():
 	heroes.add_child(head)
 	heroes_party.append(head)
 	# setup timer
-	timer.timeout
-	
+	timer.start()
 	walls_dict = walls.walls_dict
+	traps_dict = traps.traps_dict
 	heroes_spawner = get_tree().get_first_node_in_group('Hero_spawner') as HeroSpawner
 	heroes_spawner.spawn_hero()
 
@@ -56,37 +61,48 @@ func move_to_position(new_position):
 	if (heroes_party.size() > 1):
 		var old_position = heroes_party[0].position
 		var last_element_position = new_position
-		var hero
+		var i = 0
 		#heroes_party[0].position = new_position	 
-		for i in range(heroes_party.size()):
-			hero = heroes_party.pop_at(i)
+		for hero in heroes_party:
+			heroes_party.erase(hero)
 			old_position = hero.position
-			hero.position = last_element_position
-			last_element_position = old_position
-			heroes_party.insert(i,hero)
-	else:
-
-		heroes_party[0].position = new_position
-		#heroes_party[0].position = new_position
-		
+			hero.position = new_position
+			new_position = old_position
+			if(traps.is_on_trap_position(new_position)!= true || is_invulnerable == true):
+				heroes_party.insert(i,hero)
+			else:
+				get_hit(hero)
+			i +=1
+	elif (heroes_party.size() == 1 && heroes_party[0] != null):
+		if ((traps.is_on_trap_position(new_position) != true || is_invulnerable == true)):
+			heroes_party[0].position = new_position
+		else :
+			get_hit(heroes_party[0])
+			on_game_over.emit()
+	else :
+		on_game_over.emit()
 	
 func _on_timer_timeout():
-	var new_head_position = position + move_direction * HERO_SPRITE_SIZE
-	var wall_collision = check_wall_collision(new_head_position)
-	if wall_collision == null:
-		move_to_position(new_head_position)
-	else:
-		var position_after_wall_collision = get_position_after_wall_collision(wall_collision, new_head_position)
-		new_head_position = position_after_wall_collision
-		move_to_position(position_after_wall_collision)
-	if(heroes_spawner.hero != null && new_head_position == heroes_spawner.hero.position):
-		points += 1
-		on_point_scored.emit(points)
-		add_hero_to_party(heroes_spawner.hero)
-		heroes_spawner.destroy_hero()
+	if (heroes_party[0] == null):
+		on_game_over.emit()
+	else :
+		var new_head_position = position + move_direction * HERO_SPRITE_SIZE
+		var wall_collision = check_wall_collision(new_head_position)
+		if wall_collision == null:
+			move_to_position(new_head_position)
+		else:
+			var position_after_wall_collision = get_position_after_wall_collision(wall_collision, new_head_position)
+			new_head_position = position_after_wall_collision
+			move_to_position(position_after_wall_collision)
+		if(heroes_spawner.hero != null && new_head_position == heroes_spawner.hero.position):
+			points += 1
+			on_point_scored.emit(points)
+			add_hero_to_party(heroes_spawner.hero)
+			heroes_spawner.destroy_hero()
 		#heroes_spawner.spawn_hero()
 	
-		timer.wait_time *= 0.95
+			timer.wait_time *= 0.95
+			timer.start()
 func check_wall_collision(new_head_position: Vector2):
 	if (new_head_position.x == walls_dict['left'].position.x && move_direction == Vector2.LEFT):
 		return CollisionDirection.LEFT
@@ -117,3 +133,19 @@ func add_hero_to_party(hero):
 			heroes.add_child(new_hero)
 			new_hero.position = heroes_party[0].position - move_direction * HERO_SPRITE_SIZE
 			heroes_party.append(new_hero)
+func get_hit(hero: Hero):
+	hero.queue_free()
+	if(heroes_party.size() >=1 && heroes_party[0] != null):
+		for left_hero in heroes_party:
+			left_hero.on_hit();
+		$Invulnerability.start()
+		is_invulnerable = true
+
+
+func _on_invulnerability_timeout():
+	is_invulnerable = false
+	if (heroes_party.size() >1 || heroes_party[0] != null): 
+		for hero in heroes_party:
+			hero.on_invulnerability_stop()
+func _on_game_over():
+	get_tree().paused = true;
