@@ -1,8 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://2krxbcxjov7r"]
+[gd_scene format=3 uid="uid://2krxbcxjov7r"]
 
-[ext_resource type="Script" path="res://Scenes/Characters/Hero.gd" id="1_fdohl"]
+[ext_resource type="Script" uid="uid://bypttiejfufr1" path="res://Scenes/Characters/Hero.gd" id="1_fdohl"]
+[ext_resource type="Script" uid="uid://c3b5o0w4aont6" path="res://Scenes/Components/HitFlashComponent.gd" id="2_3hqg8"]
+[ext_resource type="Script" uid="uid://dqqpy1fe1e3hn" path="res://Scenes/Components/HealthComponent.gd" id="3_tyod7"]
+[ext_resource type="Script" uid="uid://trh8h4p4yx4n" path="res://Scenes/Components/AttackComponent.gd" id="4_attack"]
 
-[node name="Hero" type="Node2D"]
+[node name="Hero" type="Node3D" unique_id=1205055210]
 script = ExtResource("1_fdohl")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=92052690]
+pixel_size = 0.03125
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture_filter = 0
+
+[node name="HitFlashComponent" type="Node" parent="." unique_id=454439105 node_paths=PackedStringArray("sprite")]
+script = ExtResource("2_3hqg8")
+sprite = NodePath("../Sprite3D")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=367312371]
+script = ExtResource("3_tyod7")
+
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("4_attack")
+metadata/_custom_type_script = "uid://trh8h4p4yx4n"

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cjd5a1thm1irg"]
+
+[ext_resource type="Script" uid="uid://b4yr7l3iudc76" path="res://Scenes/Items/Chest.gd" id="1_hlq4y"]
+[ext_resource type="Texture2D" uid="uid://c5k1jgia1y5s7" path="res://Assets/Images/Characters/Items/chest_placeholder.png" id="2_kwoea"]
+[ext_resource type="Script" uid="uid://cj7cdrnp0h5xl" path="res://Scenes/Components/GridPositionComponent.gd" id="3_7bvsj"]
+[ext_resource type="Script" uid="uid://dqqpy1fe1e3hn" path="res://Scenes/Components/HealthComponent.gd" id="4_frall"]
+[ext_resource type="Script" uid="uid://cdl2ngh88gy43" path="res://Scenes/Components/KnockbackComponent.gd" id="5_mqruy"]
+[ext_resource type="Script" uid="uid://bp21mf100ugf2" path="res://Scenes/Components/DropComponent.gd" id="6_fdsdc"]
+
+[node name="Chest" type="Node3D" unique_id=1459363090]
+script = ExtResource("1_hlq4y")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=895944851]
+texture = ExtResource("2_kwoea")
+
+[node name="GridPositionComponent" type="Node" parent="." unique_id=1370155933]
+script = ExtResource("3_7bvsj")
+metadata/_custom_type_script = "uid://cj7cdrnp0h5xl"
+
+[node name="HealthComponent" type="Node" parent="." unique_id=552519366]
+script = ExtResource("4_frall")
+metadata/_custom_type_script = "uid://dqqpy1fe1e3hn"
+
+[node name="KnockbackComponent" type="Node" parent="." unique_id=683483966]
+script = ExtResource("5_mqruy")
+metadata/_custom_type_script = "uid://cdl2ngh88gy43"
+
+[node name="DropComponent" type="Node" parent="." unique_id=1003833435]
+script = ExtResource("6_fdsdc")
+metadata/_custom_type_script = "uid://bp21mf100ugf2"

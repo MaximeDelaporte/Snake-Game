@@ -1,54 +1,114 @@
-[gd_scene load_steps=8 format=3 uid="uid://c53hqbfrqyjv0"]
+[gd_scene format=3 uid="uid://c53hqbfrqyjv0"]
 
 [ext_resource type="PackedScene" uid="uid://bqq05jbb4l0xg" path="res://Scenes/Items/Wall.tscn" id="2_5nwwo"]
-[ext_resource type="Script" path="res://Scenes/World/Walls.gd" id="2_xca4u"]
-[ext_resource type="Script" path="res://Scenes/World/Traps.gd" id="6_5hnk4"]
+[ext_resource type="Script" uid="uid://b4uirmsu5vs13" path="res://Scenes/World/Walls.gd" id="2_xca4u"]
 [ext_resource type="PackedScene" uid="uid://tou4ewri3xa3" path="res://Scenes/World/UI_layer.tscn" id="6_e8r6c"]
-[ext_resource type="PackedScene" uid="uid://c1tr74sfl1dbg" path="res://Scenes/Characters/Trap.tscn" id="6_wret7"]
-[ext_resource type="PackedScene" uid="uid://br4tea6it2nhs" path="res://Scenes/Items/HeroSpawner.tscn" id="7_j8ft8"]
+[ext_resource type="PackedScene" uid="uid://br4tea6it2nhs" path="res://Scenes/World/Spawners/HeroSpawner.tscn" id="7_j8ft8"]
 [ext_resource type="PackedScene" uid="uid://bct8es2rk0f4e" path="res://Scenes/Characters/HeroesParty.tscn" id="8_4k0sg"]
+[ext_resource type="Script" uid="uid://boswor24jo355" path="res://Scenes/World/FollowCamera.gd" id="9_3s3r4"]
+[ext_resource type="Material" path="res://Assets/Materials/floor_material.tres" id="10_4w5nc"]
+[ext_resource type="Script" uid="uid://b0h50ln2d52oe" path="res://Scenes/World/TiledFloor.gd" id="11_m4m1v"]
+[ext_resource type="PackedScene" uid="uid://cs6gt6frq5pgk" path="res://Scenes/World/Spawners/ItemSpawner.tscn" id="11_t55t5"]
+[ext_resource type="Script" uid="uid://djgjdnomcr0tr" path="res://Scenes/World/IncrementalTimer.gd" id="12_1pvyk"]
+[ext_resource type="PackedScene" uid="uid://tjpbcpdj5h3g" path="res://Scenes/World/Spawners/EnemySpawner.tscn" id="12_8o8og"]
+[ext_resource type="Script" uid="uid://dq0mrpqxfy6sm" path="res://Scenes/Characters/EnemySpawnDefinition.gd" id="13_psyr8"]
+[ext_resource type="Resource" uid="uid://4f11amsrrmgr" path="res://Scenes/Characters/Enemies/WolfSpawnDefinition.tres" id="13_rhc5f"]
+[ext_resource type="Script" uid="uid://behqnth5vuff0" path="res://Scenes/World/GridOccupancy.gd" id="13_t55t5"]
+[ext_resource type="Resource" uid="uid://cups1fcdfyi7l" path="res://Scenes/Characters/Enemies/RatSpawnDefinition.tres" id="14_rhc5f"]
+[ext_resource type="PackedScene" uid="uid://lo6jbqv8kucy" path="res://Scenes/World/Spawners/HazardSpawner.tscn" id="17_nsfl0"]
+[ext_resource type="Script" uid="uid://dey31yx2ddrhy" path="res://Scenes/World/Hazards/HazardSpawnDefinition.gd" id="18_xqo82"]
+[ext_resource type="Resource" uid="uid://d0r0xhalr81r5" path="res://Scenes/World/Hazards/FloorSpike.tres" id="19_cu8p5"]
 
-[node name="Main" type="Node2D"]
-metadata/traps = NodePath("Traps")
+[sub_resource type="Environment" id="Environment_ys2jt"]
+background_mode = 2
+background_color = Color(0.862745, 0.74902, 0.603922, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.870588, 0.764706, 0.647059, 1)
+ambient_light_energy = 1.2
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
+[sub_resource type="BoxMesh" id="BoxMesh_5i1u2"]
+size = Vector3(22, 0.375, 30)
 
-[node name="Traps" type="Node" parent="."]
-script = ExtResource("6_5hnk4")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_75h2h"]
+albedo_color = Color(0.2, 0.137255, 0.109804, 1)
 
-[node name="Trap1" parent="Traps" groups=["Traps"] instance=ExtResource("6_wret7")]
-position = Vector2(0, -96)
+[node name="Main" type="Node3D" unique_id=1465407489]
+metadata/traps = NodePath("")
 
-[node name="Trap2" parent="Traps" groups=["Traps"] instance=ExtResource("6_wret7")]
-position = Vector2(0, 96)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2077345067]
+environment = SubResource("Environment_ys2jt")
 
-[node name="Walls" type="Node" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=690218201]
+current = true
+script = ExtResource("9_3s3r4")
+target_path = NodePath("../HeroesParty")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1962894928]
+transform = Transform3D(0.866025, -0.353553, -0.353553, 0, 0.707107, -0.707107, 0.5, 0.612372, 0.612372, 0, 0, 0)
+light_energy = 1.6
+shadow_enabled = true
+
+[node name="Floor" type="Node3D" parent="." unique_id=1477057642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
+script = ExtResource("11_m4m1v")
+material = ExtResource("10_4w5nc")
+
+[node name="ArenaBase" type="MeshInstance3D" parent="." unique_id=365054383]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1875, 0)
+mesh = SubResource("BoxMesh_5i1u2")
+surface_material_override/0 = SubResource("StandardMaterial3D_75h2h")
+
+[node name="Walls" type="Node3D" parent="." unique_id=1626566077]
 script = ExtResource("2_xca4u")
 
-[node name="BottomWall" parent="Walls" groups=["Walls"] instance=ExtResource("2_5nwwo")]
-position = Vector2(0, 480)
-scale = Vector2(23, 1)
+[node name="BottomWall" parent="Walls" unique_id=2055181355 groups=["Walls"] instance=ExtResource("2_5nwwo")]
+transform = Transform3D(23, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 15)
 
-[node name="TopWall" parent="Walls" groups=["Walls"] instance=ExtResource("2_5nwwo")]
-position = Vector2(0, -480)
-scale = Vector2(23, 1)
+[node name="TopWall" parent="Walls" unique_id=754503107 groups=["Walls"] instance=ExtResource("2_5nwwo")]
+transform = Transform3D(23, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -15)
 
-[node name="LeftWall" parent="Walls" groups=["Walls"] instance=ExtResource("2_5nwwo")]
-position = Vector2(-352, 0)
-scale = Vector2(1, 31)
+[node name="LeftWall" parent="Walls" unique_id=1093371574 groups=["Walls"] instance=ExtResource("2_5nwwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 31, -11, 1.25, 0)
 
-[node name="RightWall" parent="Walls" groups=["Walls"] instance=ExtResource("2_5nwwo")]
-position = Vector2(352, 0)
-scale = Vector2(1, 31)
+[node name="RightWall" parent="Walls" unique_id=1445764816 groups=["Walls"] instance=ExtResource("2_5nwwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 31, 11, 1.25, 0)
 
-[node name="UILayer" parent="." instance=ExtResource("6_e8r6c")]
+[node name="UILayer" parent="." unique_id=770751857 instance=ExtResource("6_e8r6c")]
 
-[node name="HeroSpawner" parent="." node_paths=PackedStringArray("walls", "traps", "heroes_party") groups=["Hero_spawner"] instance=ExtResource("7_j8ft8")]
+[node name="HeroSpawner" parent="." unique_id=670095644 node_paths=PackedStringArray("walls", "hazard_spawner", "heroes_party") groups=["Hero_spawner"] instance=ExtResource("7_j8ft8")]
 walls = NodePath("../Walls")
-traps = NodePath("../Traps")
+hazard_spawner = NodePath("../HazardSpawner")
 heroes_party = NodePath("../HeroesParty")
 
-[node name="HeroesParty" parent="." node_paths=PackedStringArray("walls", "traps") instance=ExtResource("8_4k0sg")]
+[node name="ItemSpawner" parent="." unique_id=1599027208 instance=ExtResource("11_t55t5")]
+
+[node name="HeroesParty" parent="." unique_id=1493733935 node_paths=PackedStringArray("walls", "hazard_spawner", "enemy_spawner", "item_spawner") instance=ExtResource("8_4k0sg")]
 walls = NodePath("../Walls")
-traps = NodePath("../Traps")
+hazard_spawner = NodePath("../HazardSpawner")
+enemy_spawner = NodePath("../EnemySpawner")
+item_spawner = NodePath("../ItemSpawner")
+
+[node name="EnemySpawner" parent="." unique_id=1836996297 node_paths=PackedStringArray("walls", "heroes_party", "world_clock", "grid_occupancy", "item_spawner") instance=ExtResource("12_8o8og")]
+walls = NodePath("../Walls")
+heroes_party = NodePath("../HeroesParty")
+world_clock = NodePath("../WorldClock")
+grid_occupancy = NodePath("../GridOccupancy")
+item_spawner = NodePath("../ItemSpawner")
+spawn_definitions = Array[ExtResource("13_psyr8")]([ExtResource("14_rhc5f"), ExtResource("13_rhc5f")])
+
+[node name="WorldClock" type="Node" parent="." unique_id=1024990703]
+script = ExtResource("12_1pvyk")
+
+[node name="GridOccupancy" type="Node" parent="." unique_id=439701090 node_paths=PackedStringArray("walls", "heroes_party", "hero_spawner", "blocking_roots")]
+script = ExtResource("13_t55t5")
+walls = NodePath("../Walls")
+heroes_party = NodePath("../HeroesParty")
+hero_spawner = NodePath("../HeroSpawner")
+blocking_roots = [NodePath("../ItemSpawner"), NodePath("../EnemySpawner")]
+
+[node name="HazardSpawner" parent="." unique_id=71558928 node_paths=PackedStringArray("walls", "heroes_party", "world_clock", "grid_occupancy") instance=ExtResource("17_nsfl0")]
+walls = NodePath("../Walls")
+heroes_party = NodePath("../HeroesParty")
+world_clock = NodePath("../WorldClock")
+grid_occupancy = NodePath("../GridOccupancy")
+spawn_definitions = Array[ExtResource("18_xqo82")]([ExtResource("19_cu8p5"), ExtResource("19_cu8p5"), ExtResource("19_cu8p5"), ExtResource("19_cu8p5")])

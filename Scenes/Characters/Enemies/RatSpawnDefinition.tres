@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemySpawnDefinition" format=3 uid="uid://cups1fcdfyi7l"]
+
+[ext_resource type="PackedScene" uid="uid://sqkefb1om15i" path="res://Scenes/Characters/Enemies/Rat.tscn" id="1_a77ol"]
+[ext_resource type="Script" uid="uid://dq0mrpqxfy6sm" path="res://Scenes/Characters/EnemySpawnDefinition.gd" id="1_vl2c0"]
+
+[resource]
+script = ExtResource("1_vl2c0")
+enemy_scene = ExtResource("1_a77ol")
+target_alive = 2
+total_spawn_limit = -1
+metadata/_custom_type_script = "uid://dq0mrpqxfy6sm"

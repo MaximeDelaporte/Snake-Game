@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cs6gt6frq5pgk"]
+
+[ext_resource type="Script" uid="uid://djf7115vojiu" path="res://Scenes/World/Spawners/ItemSpawner.gd" id="1_7tatp"]
+
+[node name="ItemSpawner" type="Node3D" unique_id=1599027208]
+script = ExtResource("1_7tatp")
+
+[node name="Items" type="Node3D" parent="." unique_id=1760898501]

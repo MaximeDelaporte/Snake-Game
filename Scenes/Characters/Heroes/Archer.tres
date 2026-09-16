@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HeroDefinition" format=3 uid="uid://cpfmldmwbcxx2"]
+
+[ext_resource type="Script" uid="uid://chhnojw0ay5iy" path="res://Scenes/Characters/HeroDefinition.gd" id="1_86rtm"]
+[ext_resource type="Texture2D" uid="uid://jv4fdmneqv5k" path="res://Assets/Images/Characters/Heroes/archer_placeholder.png" id="2_fmmcs"]
+
+[resource]
+script = ExtResource("1_86rtm")
+type_name = "Archer"
+texture = ExtResource("2_fmmcs")
+metadata/_custom_type_script = "uid://chhnojw0ay5iy"

@@ -1,14 +1,14 @@
 class_name Traps
 
-extends Node
+extends Node3D
 
 var traps_dict = {}
 
 func _ready():
-	var traps = get_tree().get_nodes_in_group('Traps') as Array[Node2D]
+	var traps = get_tree().get_nodes_in_group('Traps') as Array[Node3D]
 	var index = 0
 	for trap in traps:
-		traps_dict[index] = trap.position
+		traps_dict[index] = Vector2(trap.position.x, trap.position.z)
 		index += 1
 func is_on_trap_position(position: Vector2) :
 	for trap in traps_dict:

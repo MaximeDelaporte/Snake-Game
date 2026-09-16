@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://lo6jbqv8kucy"]
+
+[ext_resource type="Script" uid="uid://bkhbdamoy2k5h" path="res://Scenes/World/Spawners/HazardSpawner.gd" id="1_4iby8"]
+
+[node name="HazardSpawner" type="Node3D" unique_id=71558928]
+script = ExtResource("1_4iby8")
+
+[node name="Hazards" type="Node3D" parent="." unique_id=1396754187]
+
+[node name="Enterable" type="Node3D" parent="Hazards" unique_id=1918483957]
+
+[node name="Blocking" type="Node3D" parent="Hazards" unique_id=796689280]

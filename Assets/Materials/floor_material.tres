@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3]
+
+[ext_resource type="Shader" path="res://Assets/Materials/atlas_tile_3d.gdshader" id="1_p8d3v"]
+[ext_resource type="Texture2D" path="res://Assets/Images/environment_placeholder__atlas.jpg" id="2_a1l9f"]
+
+[resource]
+shader = ExtResource("1_p8d3v")
+shader_parameter/atlas_texture = ExtResource("2_a1l9f")
+shader_parameter/atlas_grid = Vector2(6, 6)
+shader_parameter/tile_index = Vector2(0, 2)
+shader_parameter/use_box_projection = false
+shader_parameter/tile_world_size = 1.0

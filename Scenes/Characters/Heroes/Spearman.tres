@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HeroDefinition" format=3 uid="uid://cdamt725yo4oj"]
+
+[ext_resource type="Script" uid="uid://chhnojw0ay5iy" path="res://Scenes/Characters/HeroDefinition.gd" id="1_qfviv"]
+[ext_resource type="Texture2D" uid="uid://clcd38asvn5bv" path="res://Assets/Images/Characters/Heroes/spearman_placeholder.png" id="2_8tw3y"]
+
+[resource]
+script = ExtResource("1_qfviv")
+type_name = "Spearman"
+texture = ExtResource("2_8tw3y")
+metadata/_custom_type_script = "uid://chhnojw0ay5iy"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HeroDefinition" format=3 uid="uid://cs6wryfrlwwqg"]
+
+[ext_resource type="Script" uid="uid://chhnojw0ay5iy" path="res://Scenes/Characters/HeroDefinition.gd" id="1_5n2r7"]
+[ext_resource type="Texture2D" uid="uid://chl7qdxbfokor" path="res://Assets/Images/Characters/Heroes/assassin_placeholder.png" id="2_14wgi"]
+
+[resource]
+script = ExtResource("1_5n2r7")
+type_name = "Assassin"
+texture = ExtResource("2_14wgi")
+metadata/_custom_type_script = "uid://chhnojw0ay5iy"

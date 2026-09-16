@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b21isb40fl5aj"]
+
+[sub_resource type="GDScript" id="GDScript_87wqd"]
+script/source = "extends Node3D
+
+@onready var sprite: Sprite3D = $Sprite3D
+var type:String
+var sprite_texture
+"
+
+[node name="Enemy" type="Node3D" unique_id=1242335733]
+script = SubResource("GDScript_87wqd")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1696142435]
+pixel_size = 0.03125
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture_filter = 0

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemySpawnDefinition" format=3 uid="uid://4f11amsrrmgr"]
+
+[ext_resource type="Script" uid="uid://dq0mrpqxfy6sm" path="res://Scenes/Characters/EnemySpawnDefinition.gd" id="1_a1egs"]
+[ext_resource type="PackedScene" uid="uid://cjvgl28kvfsmy" path="res://Scenes/Characters/Enemies/Wolf.tscn" id="1_gpwtm"]
+
+[resource]
+script = ExtResource("1_a1egs")
+enemy_scene = ExtResource("1_gpwtm")
+target_alive = 2
+total_spawn_limit = -1
+metadata/_custom_type_script = "uid://dq0mrpqxfy6sm"

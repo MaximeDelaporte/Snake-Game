@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://sqkefb1om15i"]
+
+[ext_resource type="Texture2D" uid="uid://cr318odmgs86q" path="res://Assets/Images/Characters/Ennemies/rat_placeholder.png" id="2_87xgm"]
+[ext_resource type="Script" uid="uid://b0cwwosf7vqhe" path="res://Scenes/Characters/Enemies/Rat.gd" id="2_rat_script"]
+[ext_resource type="Script" uid="uid://cj7cdrnp0h5xl" path="res://Scenes/Components/GridPositionComponent.gd" id="3_wj551"]
+[ext_resource type="Script" uid="uid://x43oa2cl1gcd" path="res://Scenes/Components/MovementComponent.gd" id="4_rifqu"]
+[ext_resource type="Script" uid="uid://cdl2ngh88gy43" path="res://Scenes/Components/KnockbackComponent.gd" id="5_vy7ta"]
+[ext_resource type="Script" uid="uid://dbggg720jftkl" path="res://Scenes/Components/PartySensorComponent.gd" id="6_domfg"]
+[ext_resource type="Script" uid="uid://dqqpy1fe1e3hn" path="res://Scenes/Components/HealthComponent.gd" id="7_7psyn"]
+[ext_resource type="Script" uid="uid://bp21mf100ugf2" path="res://Scenes/Components/DropComponent.gd" id="8_is6wc"]
+[ext_resource type="PackedScene" path="res://Scenes/Items/Coin.tscn" id="9_72ud3"]
+
+[node name="Rat" type="Node3D" unique_id=1884046049]
+script = ExtResource("2_rat_script")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=733352388]
+billboard = 1
+texture = ExtResource("2_87xgm")
+
+[node name="GridPositionComponent" type="Node" parent="." unique_id=1416958362 node_paths=PackedStringArray("actor")]
+script = ExtResource("3_wj551")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://cj7cdrnp0h5xl"
+
+[node name="MovementComponent" type="Node" parent="." unique_id=786063681 node_paths=PackedStringArray("grid_position")]
+script = ExtResource("4_rifqu")
+grid_position = NodePath("../GridPositionComponent")
+metadata/_custom_type_script = "uid://x43oa2cl1gcd"
+
+[node name="PartySensorComponent" type="Node" parent="." unique_id=492016065 node_paths=PackedStringArray("grid_position")]
+script = ExtResource("6_domfg")
+grid_position = NodePath("../GridPositionComponent")
+metadata/_custom_type_script = "uid://dbggg720jftkl"
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1495084762]
+script = ExtResource("7_7psyn")
+metadata/_custom_type_script = "uid://dqqpy1fe1e3hn"
+
+[node name="KnockbackComponent" type="Node" parent="." unique_id=1997632712 node_paths=PackedStringArray("grid_position")]
+script = ExtResource("5_vy7ta")
+grid_position = NodePath("../GridPositionComponent")
+maximum_distance = 3
+metadata/_custom_type_script = "uid://cdl2ngh88gy43"
+
+[node name="DropComponent" type="Node" parent="." unique_id=975785530]
+script = ExtResource("8_is6wc")
+drop_chance = 0.1
+item_scenes = Array[PackedScene]([ExtResource("9_72ud3")])
+metadata/_custom_type_script = "uid://bp21mf100ugf2"

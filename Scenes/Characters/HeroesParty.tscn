@@ -1,17 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://bct8es2rk0f4e"]
+[gd_scene format=3 uid="uid://bct8es2rk0f4e"]
 
-[ext_resource type="Script" path="res://Scenes/Characters/HeroesParty.gd" id="1_is04r"]
+[ext_resource type="Script" uid="uid://b7w3qup4jjxqj" path="res://Scenes/Characters/HeroesParty.gd" id="1_is04r"]
+[ext_resource type="Script" uid="uid://djgjdnomcr0tr" path="res://Scenes/World/IncrementalTimer.gd" id="2_gld3x"]
+[ext_resource type="PackedScene" uid="uid://2krxbcxjov7r" path="res://Scenes/Characters/Hero.tscn" id="2_jwayn"]
+[ext_resource type="Script" uid="uid://chhnojw0ay5iy" path="res://Scenes/Characters/HeroDefinition.gd" id="3_c14s2"]
+[ext_resource type="Resource" uid="uid://dvb70akjypj4w" path="res://Scenes/Characters/Heroes/Warrior.tres" id="3_rhtlc"]
+[ext_resource type="Resource" uid="uid://cpfmldmwbcxx2" path="res://Scenes/Characters/Heroes/Archer.tres" id="5_l1746"]
+[ext_resource type="Resource" uid="uid://cdamt725yo4oj" path="res://Scenes/Characters/Heroes/Spearman.tres" id="6_j6yyw"]
 
-[node name="HeroesParty" type="Node2D"]
+[node name="HeroesParty" type="Node3D" unique_id=170925329]
 script = ExtResource("1_is04r")
+hero_scene = ExtResource("2_jwayn")
+starting_hero_definitions = Array[ExtResource("3_c14s2")]([ExtResource("3_rhtlc"), ExtResource("5_l1746"), ExtResource("6_j6yyw")])
 
-[node name="Heroes" type="Node" parent="."]
+[node name="Heroes" type="Node3D" parent="." unique_id=1059809694]
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
-
-[node name="Invulnerability" type="Timer" parent="."]
+[node name="Invulnerability" type="Timer" parent="." unique_id=1783119818]
 wait_time = 3.0
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="PartyClock" type="Node" parent="." unique_id=1579328485]
+script = ExtResource("2_gld3x")
+
 [connection signal="timeout" from="Invulnerability" to="." method="_on_invulnerability_timeout"]

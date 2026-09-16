@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://iym5dqibnf4a"]
+
+[ext_resource type="PackedScene" uid="uid://2krxbcxjov7r" path="res://Scenes/Characters/Hero.tscn" id="1_punchman_base"]
+
+[node name="Hero" unique_id=1318897228 instance=ExtResource("1_punchman_base")]

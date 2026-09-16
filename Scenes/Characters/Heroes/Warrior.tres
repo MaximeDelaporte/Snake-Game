@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HeroDefinition" format=3 uid="uid://dvb70akjypj4w"]
+
+[ext_resource type="Script" uid="uid://chhnojw0ay5iy" path="res://Scenes/Characters/HeroDefinition.gd" id="1_wc76n"]
+[ext_resource type="Texture2D" uid="uid://d207sy74a4uxg" path="res://Assets/Images/Characters/Heroes/warrior_placeholder.png" id="2_n4l7e"]
+
+[resource]
+script = ExtResource("1_wc76n")
+type_name = "Warrior"
+texture = ExtResource("2_n4l7e")
+metadata/_custom_type_script = "uid://chhnojw0ay5iy"

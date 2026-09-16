@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="HazardSpawnDefinition" format=3 uid="uid://d0r0xhalr81r5"]
+
+[ext_resource type="Script" uid="uid://dey31yx2ddrhy" path="res://Scenes/World/Hazards/HazardSpawnDefinition.gd" id="1_mjdac"]
+[ext_resource type="PackedScene" uid="uid://c1tr74sfl1dbg" path="res://Scenes/World/Hazards/FloorSpike.tscn" id="1_yjpib"]
+
+[resource]
+script = ExtResource("1_mjdac")
+hazard_scene = ExtResource("1_yjpib")
+metadata/_custom_type_script = "uid://dey31yx2ddrhy"

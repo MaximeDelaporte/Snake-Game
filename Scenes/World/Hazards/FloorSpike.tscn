@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c1tr74sfl1dbg"]
+
+[ext_resource type="Script" uid="uid://bs3dryisbrl50" path="res://Scenes/World/Hazards/FloorSpike.gd" id="1_hcis5"]
+[ext_resource type="Texture2D" uid="uid://xwca7lipv8qi" path="res://Assets/Images/Characters/Ennemies/trap_placeholder.png" id="2_l6o2q"]
+[ext_resource type="Script" uid="uid://cj7cdrnp0h5xl" path="res://Scenes/Components/GridPositionComponent.gd" id="3_pu3ny"]
+[ext_resource type="Script" uid="uid://djrk6mhtvo4ef" path="res://Scenes/Components/GridFootprintComponent.gd" id="4_c1le6"]
+
+[node name="FloorSpike" type="Node3D" unique_id=1582611767]
+script = ExtResource("1_hcis5")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1696142435]
+pixel_size = 0.03125
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("2_l6o2q")
+
+[node name="GridPositionComponent" type="Node" parent="." unique_id=1188779439 node_paths=PackedStringArray("actor")]
+script = ExtResource("3_pu3ny")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://cj7cdrnp0h5xl"
+
+[node name="GridFootprintComponent" type="Node" parent="." unique_id=1062889947 node_paths=PackedStringArray("grid_position")]
+script = ExtResource("4_c1le6")
+grid_position = NodePath("../GridPositionComponent")
+metadata/_custom_type_script = "uid://djrk6mhtvo4ef"

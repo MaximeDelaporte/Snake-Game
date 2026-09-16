@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://br4tea6it2nhs"]
+
+[ext_resource type="Script" uid="uid://bfjxvw6hnfhqy" path="res://Scenes/World/Spawners/HeroSpawner.gd" id="1_mgoom"]
+[ext_resource type="PackedScene" uid="uid://2krxbcxjov7r" path="res://Scenes/Characters/Hero.tscn" id="2_c7127"]
+[ext_resource type="Script" uid="uid://chhnojw0ay5iy" path="res://Scenes/Characters/HeroDefinition.gd" id="3_dri55"]
+[ext_resource type="Resource" uid="uid://dvb70akjypj4w" path="res://Scenes/Characters/Heroes/Warrior.tres" id="4_5g23d"]
+[ext_resource type="Resource" uid="uid://cpfmldmwbcxx2" path="res://Scenes/Characters/Heroes/Archer.tres" id="5_kno82"]
+[ext_resource type="Resource" uid="uid://cs6wryfrlwwqg" path="res://Scenes/Characters/Heroes/Assassin.tres" id="6_mgs6d"]
+[ext_resource type="Resource" uid="uid://c6u53m8wvm22t" path="res://Scenes/Characters/Heroes/Punchman.tres" id="7_f8nu7"]
+[ext_resource type="Resource" uid="uid://cdamt725yo4oj" path="res://Scenes/Characters/Heroes/Spearman.tres" id="8_dbn82"]
+
+[node name="HeroSpawner" type="Node3D" unique_id=702856692 groups=["Food_spawner"]]
+script = ExtResource("1_mgoom")
+hero_scene = ExtResource("2_c7127")
+hero_definitions = Array[ExtResource("3_dri55")]([ExtResource("4_5g23d"), ExtResource("5_kno82"), ExtResource("6_mgs6d"), ExtResource("7_f8nu7"), ExtResource("8_dbn82")])

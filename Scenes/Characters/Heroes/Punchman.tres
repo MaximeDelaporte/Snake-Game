@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HeroDefinition" format=3 uid="uid://c6u53m8wvm22t"]
+
+[ext_resource type="Script" uid="uid://chhnojw0ay5iy" path="res://Scenes/Characters/HeroDefinition.gd" id="1_f1avw"]
+[ext_resource type="Texture2D" uid="uid://dw0ur1fca5hah" path="res://Assets/Images/Characters/Heroes/punchman_placeholder.png" id="2_a0c1g"]
+
+[resource]
+script = ExtResource("1_f1avw")
+type_name = "Punchman"
+texture = ExtResource("2_a0c1g")
+metadata/_custom_type_script = "uid://chhnojw0ay5iy"
