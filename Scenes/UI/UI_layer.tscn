@@ -1,41 +1,48 @@
-[gd_scene load_steps=2 format=3 uid="uid://tou4ewri3xa3"]
+[gd_scene format=3 uid="uid://tou4ewri3xa3"]
 
-[ext_resource type="Script" path="res://Scenes/World/UI_layer.gd" id="1_nbefs"]
+[ext_resource type="Script" uid="uid://hay1ml1mnt2q" path="res://Scenes/UI/UI_layer.gd" id="1_nbefs"]
 
-[node name="UILayer" type="CanvasLayer"]
+[node name="UILayer" type="CanvasLayer" unique_id=316394277]
+process_mode = 3
 script = ExtResource("1_nbefs")
 
-[node name="BoxContainer" type="HBoxContainer" parent="."]
+[node name="BoxContainer" type="HBoxContainer" parent="." unique_id=148369643]
 visible = false
 custom_minimum_size = Vector2(400, 0)
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -55.5
-offset_right = 55.5
-offset_bottom = 40.0
+anchor_bottom = 1.0
+offset_left = -260.0
+offset_top = -180.0
+offset_right = 260.0
+offset_bottom = -92.0
 grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 4
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Restart" type="Button" parent="BoxContainer"]
+[node name="Restart" type="Button" parent="BoxContainer" unique_id=1920032671]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(240, 88)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_font_sizes/font_size = 28
 text = "Restart"
 
-[node name="Quit" type="Button" parent="BoxContainer"]
+[node name="Quit" type="Button" parent="BoxContainer" unique_id=1321958272]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(240, 88)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-text = "Quit"
+theme_override_font_sizes/font_size = 28
+text = "Main Menu"
 
-[node name="PointsLabel" type="Label" parent="."]
+[node name="PointsLabel" type="Label" parent="." unique_id=1691402192]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -45,7 +52,7 @@ offset_bottom = 26.0
 grow_horizontal = 0
 text = "Points: 0"
 
-[node name="GameOverLabel" type="Label" parent="."]
+[node name="GameOverLabel" type="Label" parent="." unique_id=1737796992]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -59,8 +66,9 @@ offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 64
 text = "GAME OVER"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="BoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="BoxContainer/Quit" to="." method="_on_quit_pressed"]

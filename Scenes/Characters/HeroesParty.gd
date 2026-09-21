@@ -53,6 +53,8 @@ func _ready():
 	heroes_spawner = get_tree().get_first_node_in_group('Hero_spawner') as HeroSpawner
 	heroes_spawner.call_deferred("spawn_hero")
 	call_deferred("movement_loop")
+	$SwipeInput.swiped.connect(request_screen_direction)
+	
 func create_hero(definition: HeroDefinition) -> Hero:
 	var hero := hero_scene.instantiate() as Hero
 	heroes.add_child(hero)
@@ -61,13 +63,20 @@ func create_hero(definition: HeroDefinition) -> Hero:
 	return hero
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_right") || event.is_action_pressed("right"):
-		try_set_move_direction(get_camera_relative_direction(Vector3.RIGHT))
+		request_screen_direction(Vector2.RIGHT)
 	elif event.is_action_pressed("ui_left") || event.is_action_pressed("left"):
-		try_set_move_direction(get_camera_relative_direction(Vector3.LEFT))
+		request_screen_direction(Vector2.LEFT)
 	elif event.is_action_pressed("ui_up") || event.is_action_pressed("up"):
-		try_set_move_direction(get_camera_relative_direction(Vector3.FORWARD))
+		request_screen_direction(Vector2.UP)
 	elif event.is_action_pressed("ui_down") || event.is_action_pressed("down"):
-		try_set_move_direction(get_camera_relative_direction(Vector3.BACK))
+		request_screen_direction(Vector2.DOWN)
+func request_screen_direction(direction: Vector2) -> void:
+	if get_tree().paused:
+		return
+	if direction not in [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]:
+		return
+	var camera_direction := Vector3(direction.x, 0.0, direction.y)
+	try_set_move_direction(get_camera_relative_direction(camera_direction))
 func get_leader() -> Hero:
 	cleanup_party()
 	if heroes_party.is_empty():

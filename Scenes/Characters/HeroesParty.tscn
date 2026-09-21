@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://dvb70akjypj4w" path="res://Scenes/Characters/Heroes/Warrior.tres" id="3_rhtlc"]
 [ext_resource type="Resource" uid="uid://cpfmldmwbcxx2" path="res://Scenes/Characters/Heroes/Archer.tres" id="5_l1746"]
 [ext_resource type="Resource" uid="uid://cdamt725yo4oj" path="res://Scenes/Characters/Heroes/Spearman.tres" id="6_j6yyw"]
+[ext_resource type="Script" uid="uid://cri3wpplekd3m" path="res://Scenes/Components/SwipeInput.gd" id="8_l1746"]
 
 [node name="HeroesParty" type="Node3D" unique_id=170925329]
 script = ExtResource("1_is04r")
@@ -20,5 +21,8 @@ wait_time = 3.0
 
 [node name="PartyClock" type="Node" parent="." unique_id=1579328485]
 script = ExtResource("2_gld3x")
+
+[node name="SwipeInput" type="Node" parent="." unique_id=1396541477]
+script = ExtResource("8_l1746")
 
 [connection signal="timeout" from="Invulnerability" to="." method="_on_invulnerability_timeout"]

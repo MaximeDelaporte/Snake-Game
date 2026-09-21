@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bqq05jbb4l0xg" path="res://Scenes/Items/Wall.tscn" id="2_5nwwo"]
 [ext_resource type="Script" uid="uid://b4uirmsu5vs13" path="res://Scenes/World/Walls.gd" id="2_xca4u"]
-[ext_resource type="PackedScene" uid="uid://tou4ewri3xa3" path="res://Scenes/World/UI_layer.tscn" id="6_e8r6c"]
+[ext_resource type="PackedScene" uid="uid://tou4ewri3xa3" path="res://Scenes/UI/UI_layer.tscn" id="6_e8r6c"]
 [ext_resource type="PackedScene" uid="uid://br4tea6it2nhs" path="res://Scenes/World/Spawners/HeroSpawner.tscn" id="7_j8ft8"]
 [ext_resource type="PackedScene" uid="uid://bct8es2rk0f4e" path="res://Scenes/Characters/HeroesParty.tscn" id="8_4k0sg"]
 [ext_resource type="Script" uid="uid://boswor24jo355" path="res://Scenes/World/FollowCamera.gd" id="9_3s3r4"]

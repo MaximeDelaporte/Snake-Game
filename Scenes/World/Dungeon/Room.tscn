@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://qaklwx38cnwb"]
+
+[ext_resource type="Script" uid="uid://be4qcvtulyplr" path="res://Scenes/World/Spawners/EnemySpawner.gd" id="1_j3381"]
+[ext_resource type="Script" uid="uid://djf7115vojiu" path="res://Scenes/World/Spawners/ItemSpawner.gd" id="2_2mhht"]
+
+[node name="Room" type="Node3D" unique_id=125666276]
+
+[node name="Geometry" type="Node3D" parent="." unique_id=1451614765]
+
+[node name="SocketWalls" type="Node3D" parent="." unique_id=1762136786]
+
+[node name="DoorViews" type="Node3D" parent="." unique_id=631877401]
+
+[node name="EnemySpawner" type="Node3D" parent="." unique_id=1766853605]
+script = ExtResource("1_j3381")
+metadata/_custom_type_script = "uid://be4qcvtulyplr"
+
+[node name="ItemSpawner" type="Node3D" parent="." unique_id=668617287]
+script = ExtResource("2_2mhht")
+metadata/_custom_type_script = "uid://djf7115vojiu"
+
+[node name="Markers" type="Node3D" parent="." unique_id=686994007]
