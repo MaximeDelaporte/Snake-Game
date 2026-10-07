@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DungeonGenerationSettings" format=3 uid="uid://cwjc2sxfbw4fn"]
+
+[ext_resource type="Script" uid="uid://bsx5dfm6cby33" path="res://Scenes/World/Dungeon/DungeonGenerationSettings.gd" id="1_lconc"]
+
+[resource]
+script = ExtResource("1_lconc")
+metadata/_custom_type_script = "uid://bsx5dfm6cby33"

@@ -1,0 +1,190 @@
+[gd_scene format=3 uid="uid://cwfmh2o15lfx8"]
+
+[ext_resource type="Script" uid="uid://be4qcvtulyplr" path="res://Scenes/World/Spawners/EnemySpawner.gd" id="1_741dx"]
+[ext_resource type="Script" uid="uid://djf7115vojiu" path="res://Scenes/World/Spawners/ItemSpawner.gd" id="2_0oipx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j3381"]
+albedo_color = Color(0.5755073, 0.43955898, 0.7342017, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_obvip"]
+material = SubResource("StandardMaterial3D_j3381")
+size = Vector3(13, 0.2, 17)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j3381"]
+size = Vector3(7, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2mhht"]
+size = Vector3(7, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_elnq0"]
+size = Vector3(7, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_80aj8"]
+size = Vector3(7, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3y1tu"]
+size = Vector3(1, 2, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kwmxa"]
+size = Vector3(1, 2, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ne10h"]
+size = Vector3(1, 2, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7svwe"]
+size = Vector3(1, 2, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_isadn"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ltqxo"]
+size = Vector3(1, 2, 1)
+
+[node name="Room" type="Node3D" unique_id=125666276]
+
+[node name="Geometry" type="Node3D" parent="." unique_id=1451614765]
+
+[node name="Floor" type="MeshInstance3D" parent="Geometry" unique_id=1061593024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+mesh = SubResource("BoxMesh_obvip")
+
+[node name="BoundaryWalls" type="Node3D" parent="Geometry" unique_id=1832606062]
+
+[node name="NorthLeft" type="MeshInstance3D" parent="Geometry/BoundaryWalls" unique_id=1989836766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -9)
+mesh = SubResource("BoxMesh_j3381")
+
+[node name="NorthRight" type="MeshInstance3D" parent="Geometry/BoundaryWalls" unique_id=262958099]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -9)
+mesh = SubResource("BoxMesh_2mhht")
+skeleton = NodePath("../NorthLeft")
+
+[node name="SouthLeft" type="MeshInstance3D" parent="Geometry/BoundaryWalls" unique_id=1472325991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 9)
+mesh = SubResource("BoxMesh_elnq0")
+skeleton = NodePath("../NorthRight")
+
+[node name="SouthRight" type="MeshInstance3D" parent="Geometry/BoundaryWalls" unique_id=835583911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 9)
+mesh = SubResource("BoxMesh_80aj8")
+skeleton = NodePath("../SouthLeft")
+
+[node name="WestNorth" type="MeshInstance3D" parent="Geometry/BoundaryWalls" unique_id=341966949]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, -4.5)
+mesh = SubResource("BoxMesh_3y1tu")
+skeleton = NodePath("../SouthRight")
+
+[node name="WestSouth" type="MeshInstance3D" parent="Geometry/BoundaryWalls" unique_id=792198927]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 4.5)
+mesh = SubResource("BoxMesh_kwmxa")
+skeleton = NodePath("../WestNorth")
+
+[node name="EastNorth" type="MeshInstance3D" parent="Geometry/BoundaryWalls" unique_id=1531676930]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, -4.5)
+mesh = SubResource("BoxMesh_ne10h")
+skeleton = NodePath("../WestSouth")
+
+[node name="EastSouth" type="MeshInstance3D" parent="Geometry/BoundaryWalls" unique_id=1627414372]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 4.5)
+mesh = SubResource("BoxMesh_7svwe")
+skeleton = NodePath("../EastNorth")
+
+[node name="SocketWalls" type="Node3D" parent="." unique_id=1762136786]
+
+[node name="North" type="Node3D" parent="SocketWalls" unique_id=1548596346]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[node name="Plug" type="MeshInstance3D" parent="SocketWalls/North" unique_id=1869417159]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_isadn")
+
+[node name="East" type="Node3D" parent="SocketWalls" unique_id=1524398741]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="Plug" type="MeshInstance3D" parent="SocketWalls/East" unique_id=408558344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_isadn")
+
+[node name="South" type="Node3D" parent="SocketWalls" unique_id=953997111]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="Plug" type="MeshInstance3D" parent="SocketWalls/South" unique_id=130467758]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_isadn")
+
+[node name="West" type="Node3D" parent="SocketWalls" unique_id=51101160]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="Plug" type="MeshInstance3D" parent="SocketWalls/West" unique_id=841949781]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_isadn")
+
+[node name="DoorViews" type="Node3D" parent="." unique_id=631877401]
+
+[node name="North" type="Node3D" parent="DoorViews" unique_id=1136694697]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+visible = false
+
+[node name="OpenState" type="Node3D" parent="DoorViews/North" unique_id=1604786148]
+
+[node name="ClosedState" type="Node3D" parent="DoorViews/North" unique_id=1439287866]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DoorViews/North/ClosedState" unique_id=1798713388]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_ltqxo")
+
+[node name="East" type="Node3D" parent="DoorViews" unique_id=1009556360]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+visible = false
+
+[node name="OpenState" type="Node3D" parent="DoorViews/East" unique_id=17705434]
+
+[node name="ClosedState" type="Node3D" parent="DoorViews/East" unique_id=555867957]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DoorViews/East/ClosedState" unique_id=1738842593]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_ltqxo")
+
+[node name="South" type="Node3D" parent="DoorViews" unique_id=905310044]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+visible = false
+
+[node name="OpenState" type="Node3D" parent="DoorViews/South" unique_id=1629098412]
+
+[node name="ClosedState" type="Node3D" parent="DoorViews/South" unique_id=627640048]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DoorViews/South/ClosedState" unique_id=185840898]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_ltqxo")
+
+[node name="West" type="Node3D" parent="DoorViews" unique_id=367242795]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+visible = false
+
+[node name="OpenState" type="Node3D" parent="DoorViews/West" unique_id=1734401205]
+
+[node name="ClosedState" type="Node3D" parent="DoorViews/West" unique_id=752690694]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DoorViews/West/ClosedState" unique_id=153101024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_ltqxo")
+
+[node name="EnemySpawner" type="Node3D" parent="." unique_id=1766853605]
+script = ExtResource("1_741dx")
+metadata/_custom_type_script = "uid://be4qcvtulyplr"
+
+[node name="ItemSpawner" type="Node3D" parent="." unique_id=668617287]
+script = ExtResource("2_0oipx")
+metadata/_custom_type_script = "uid://djf7115vojiu"
+
+[node name="Markers" type="Node3D" parent="." unique_id=686994007]
+
+[node name="Entrance" type="Node3D" parent="Markers" unique_id=1184706525 groups=["navigation_anchor"]]
+
+[node name="Exit" type="Node3D" parent="Markers" unique_id=659721761 groups=["navigation_anchor"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="Reward" type="Node3D" parent="Markers" unique_id=160430252 groups=["navigation_anchor", "reward_spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="SpawnMarkers" type="Node3D" parent="Markers" unique_id=263220463]
